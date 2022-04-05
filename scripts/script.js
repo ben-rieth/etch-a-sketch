@@ -23,7 +23,7 @@ function updateRgb(evt) {
 function colorDiv(evt) {
     
     if (colorSelection === "black") {
-        evt.currentTarget.classList.add('colored');
+        evt.currentTarget.style['background-color'] = 'black';
 
     } else if (colorSelection === "random") {
         evt.currentTarget.style['background-color'] = randomRgb();

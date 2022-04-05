@@ -35,10 +35,6 @@ button {
     height: 0;
 }
 
-.colored {
-    background-color: black;
-}
-
 .color-select {
     display: flex;
 }
