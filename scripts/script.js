@@ -1,5 +1,19 @@
+let colorSelection;
+
+function randomRgb() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+
+    return `rgb(${red}, ${blue}, ${green})`;
+}
+
 function colorDiv(evt) {
-    evt.currentTarget.classList.add('colored');
+    if (colorSelection === "black") {
+        evt.currentTarget.classList.add('colored');
+    } else if (colorSelection === "random") {
+        evt.currentTarget.style['background-color'] = randomRgb();
+    }
 }
 
 function createDiv() {
@@ -45,7 +59,22 @@ function resetGrid() {
     createGrid(size);
 }
 
+function changeColor(evt) {
+    console.log(evt.currentTarget.value);
+    if (evt.currentTarget.value === "black") {
+        colorSelection = "black";
+    } else if (evt.currentTarget.value === "random") {
+        colorSelection = "random";
+    }
+}
+
+colorSelection = "black";
 createGrid(16);
 
 const resetBtn = document.getElementById('reset-btn');
 resetBtn.addEventListener('click', resetGrid)
+
+const colorSelect = document.querySelectorAll('input[type=radio]')
+colorSelect.forEach((radio) => {
+    radio.addEventListener('click', changeColor);
+});
