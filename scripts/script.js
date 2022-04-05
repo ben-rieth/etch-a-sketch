@@ -21,16 +21,29 @@ function updateRgb(evt) {
 }
 
 function colorDiv(evt) {
+    let target = evt.currentTarget;
     
     if (colorSelection === "black") {
-        evt.currentTarget.style['background-color'] = 'black';
+        target.style['background-color'] = 'black';
+
+        target.classList.toggle('colored-black', true);
+        target.classList.toggle('colored-random', false);
+        target.classList.toggle('colored-black-10', false);
 
     } else if (colorSelection === "random") {
-        evt.currentTarget.style['background-color'] = randomRgb();
+        target.style['background-color'] = randomRgb();
+        target.classList.toggle('colored-random', true);
+        target.classList.toggle('colored-black', false);
+        target.classList.toggle('colored-black-10', false);
 
     } else if (colorSelection === "black-10") {
-        if (evt.currentTarget.style['background-color'] === '') {
-            evt.currentTarget.style['background-color'] = 'rgb(230, 230, 230)';
+
+        if (target.style['background-color'] === '' ||
+                target.classList.contains('colored-random')) {
+
+            target.style['background-color'] = 'rgb(230, 230, 230)';
+            target.classList.toggle('colored-random', false);
+            target.classList.toggle('colored-black-10', true);
 
         } else {
             evt.currentTarget.style['background-color'] = updateRgb(evt);
