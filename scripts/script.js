@@ -32,4 +32,20 @@ function createGrid(size=16) {
     }
 }
 
+function resetGrid() {
+    let size = parseInt(prompt("How many squares long do you want the sides to be?"+
+    "\n(30 squares recommend max for laptop, 70 for desktop)", "16"));
+
+    const container = document.getElementById('container');
+    
+    while(container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
+    createGrid(size);
+}
+
 createGrid(16);
+
+const resetBtn = document.getElementById('reset-btn');
+resetBtn.addEventListener('click', resetGrid)
