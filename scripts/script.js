@@ -8,12 +8,35 @@ function randomRgb() {
     return `rgb(${red}, ${blue}, ${green})`;
 }
 
+function updateRgb(evt) {
+    let currentRgb = evt.currentTarget.style['background-color'];
+
+    let color = parseInt(currentRgb.substring(4, currentRgb.indexOf(',')));
+    console.log(color);
+    if (color > 0) {
+        color -= 25;
+        return `rgb(${color}, ${color}, ${color})`;
+    }
+    return currentRgb;
+}
+
 function colorDiv(evt) {
+    
     if (colorSelection === "black") {
         evt.currentTarget.classList.add('colored');
+
     } else if (colorSelection === "random") {
         evt.currentTarget.style['background-color'] = randomRgb();
+
+    } else if (colorSelection === "black-10") {
+        if (evt.currentTarget.style['background-color'] === '') {
+            evt.currentTarget.style['background-color'] = 'rgb(230, 230, 230)';
+
+        } else {
+            evt.currentTarget.style['background-color'] = updateRgb(evt);
+        }
     }
+    
 }
 
 function createDiv() {
@@ -60,11 +83,12 @@ function resetGrid() {
 }
 
 function changeColor(evt) {
-    console.log(evt.currentTarget.value);
     if (evt.currentTarget.value === "black") {
         colorSelection = "black";
     } else if (evt.currentTarget.value === "random") {
         colorSelection = "random";
+    } else if (evt.currentTarget.value === "black-10") {
+        colorSelection = "black-10";
     }
 }
 
